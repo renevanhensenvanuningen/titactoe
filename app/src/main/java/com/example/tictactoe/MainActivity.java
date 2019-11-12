@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
+    String color = "red";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,27 +107,37 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTransparent(View v){
         ImageView iv = (ImageView) v;
-       // iv.setAlpha(0.0f);
+        iv.setAlpha(0.0f);
+
     }
 
     private void doOnClick(View v){
         ImageView iv = (ImageView) v;
+        if (color == "yellow")
+          iv.setImageResource(R.drawable.yellow);
+        else
+          iv.setImageResource(R.drawable.red);
+
         String o = (String)iv.getTag();
         int iTag =  Integer.valueOf(o);
-        if (iTag < 3) iv.setTranslationY(-50);
-        if ((iTag >= 3) && (iTag < 7)) iv.setTranslationY(-240);
-        if ((iTag >= 7) && (iTag < 10)) iv.setTranslationY(-360);
+        if (iTag < 3)
+            iv.setTranslationY(-200);
+        if ((iTag >= 3) && (iTag < 7))
+            iv.setTranslationY(-350);
+        if ((iTag >= 7) && (iTag < 10))
+            iv.setTranslationY(-550);
 
         iv.setAlpha(1.0f);
         iv.invalidate();
         if (iTag < 3)
-          iv.animate().translationY(+50).setDuration(1000);
+          iv.animate().translationY(+0).setDuration(1000);
         if ((iTag >= 3) && (iTag < 7))
-          iv.animate().translationY(+240).setDuration(1000);
+          iv.animate().translationY(+0).setDuration(1000);
         if ((iTag >= 7) && (iTag < 10))
-          iv.animate().translationY(+360).setDuration(1000);
+          iv.animate().translationY(+0).setDuration(1000);
 
-
+        if (String.valueOf(color) == "red")  color = "yellow";
+        else color = "red";
 
 
     }
